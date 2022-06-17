@@ -1,0 +1,14 @@
+TODO[x] (Dima)auth.controller.js schreiben
+TODO[] user.controller.js schreiben
+  - überlege alleine oder mit uns zusammen,
+    welche contoller dafür nötig sind 
+    (vermutlich braucht es mehr als nur einfaches CRUD)*
+    und halte wichtiges auf miro fest
+TODO[] events.controller.js schreiben
+  - überlege alleine oder mit uns zusammen,
+    welche contoller dafür nötig sind 
+    (vermutlich braucht es mehr als nur einfaches CRUD)*
+    und halte wichtiges auf miro fest
+
+
+* Bedingt von der Situation was das FrontEnd tun wird bzw. soll
