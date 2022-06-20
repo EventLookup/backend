@@ -1,9 +1,22 @@
 import { Router } from 'express';
-import { getAllEvents } from '../controller/events.controller.js';
+import {
+  // create
+  createEvent,
+  // read
+  getAllEvents
+  // update
+  // delete
+} from '../controller/events.controller.js';
 
 const router = Router();
 
 router.route('/events')
+     // create
+    .put(createEvent)
+     // read
     .get(getAllEvents)
+  
 
-export default router
+router.route('/events/:id')
+
+export default router;
