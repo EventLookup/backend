@@ -1,6 +1,6 @@
 import { body } from 'express-validator';
 
-export const eventGetAllValidationSchema = [
+export default eventGetValidationSchema = [
     body('title')
         .unescape(),
 

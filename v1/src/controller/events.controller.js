@@ -42,6 +42,22 @@ async function getSingleEvent(req,res,next) {
     }
 };
 
+async function updateOneEvent(req,res,next) {
+    const {id:eventId} = req.params;
+    const {body:newEvent} = req;
+
+    console.log(newEvent);
+    try{
+        const updatedEvent = await Event.findByIdAndUpdate(eventId, newEvent);
+        res.status(StatusCodes.OK).json({ 
+            msg: 'Event wurde erfolgreich aktualisiert',
+            newEvent
+        })
+    } catch(error) {
+        next(error);
+    }
+};
+
 
 async function deleteOneEvent(req, res, next) {
   const { id:eventId } = req.params;
@@ -55,10 +71,12 @@ async function deleteOneEvent(req, res, next) {
   } catch (error) {
     next(error);
   }
-}
+};
+
 export {
   createEvent,
   getAllEvents,
   getSingleEvent,
+  updateOneEvent
   deleteOneEvent
 }
