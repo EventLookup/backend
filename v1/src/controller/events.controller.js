@@ -1,10 +1,15 @@
+import { StatusCodes } from 'http-status-codes';
 import Event from '../models/Event.model.js';
 
 async function createEvent(req, res, next) {
 
   try {
     // MVP
-    const event = Event.create(req.body);
+    await Event.create(req.body);
+
+    res.status(StatusCodes.CREATED).send({
+     msg: `Event wurde erstellt`
+    })
   } catch (error) {
     next(error)
   }
