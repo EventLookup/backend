@@ -1,6 +1,6 @@
 import { body } from 'express-validator';
 
-export const userprofileValidationSchema = [
+export const userprofilePatchValidationSchema = [
     body('firstname')
         .trim()
         .not()
@@ -9,7 +9,7 @@ export const userprofileValidationSchema = [
         .not()
         .matches(/\W/)
         .withMessage('Der Vorname darf keine Sonderzeichen enthalten.')
-        .escape,
+        .escape(),
         
     body('lastname')
         .trim()
@@ -19,7 +19,7 @@ export const userprofileValidationSchema = [
         .not()
         .matches(/\W/)
         .withMessage('Der Nachname darf keine Sonderzeichen enthalten.')
-        .escape,
+        .escape(),
 
     body('organizer')
         .not()
