@@ -1,12 +1,21 @@
 import { Router } from 'express';
 import {
-  createEvent
+  // create
+  createEvent,
+  // read
+  getAllEvents
+  // update
+  // delete
 } from '../controller/events.controller.js';
 
 const router = Router();
 
 router.route('/events')
-  .put(createEvent)
+     // create
+    .put(createEvent)
+     // read
+    .get(getAllEvents)
+  
 
 router.route('/events/:id')
 
