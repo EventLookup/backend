@@ -42,8 +42,23 @@ async function getSingleEvent(req,res,next) {
     }
 };
 
+
+async function deleteOneEvent(req, res, next) {
+  const { id:eventId } = req.params;
+
+  try {
+    const event = await Event.findOneAndDelete({ _id: eventId });
+
+    res.status(StatusCodes.OK).json({
+      msg: `Event mit der ID: ${eventId} wurde gelöscht!`
+    });
+  } catch (error) {
+    next(error);
+  }
+}
 export {
   createEvent,
   getAllEvents,
-  getSingleEvent
+  getSingleEvent,
+  deleteOneEvent
 }
