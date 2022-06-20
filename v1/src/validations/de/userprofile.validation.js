@@ -37,7 +37,7 @@ export const userprofileValidationSchema = [
         // .withMessage('Der Straßenname darf keine Zahlen enthalten.')
         .isLength({max: 50}),
 
-    body('houseNumber')
+    body('houseNr')
         .trim()
         .isLength({min: 1, max: 3})
         .withMessage('Die Hausnummer muss zwischen 1 und 999 sein.'),
