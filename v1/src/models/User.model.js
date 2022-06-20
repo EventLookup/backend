@@ -88,7 +88,7 @@ const userSchema = new mongoose.Schema({
       }
     },
     houseNr: {
-      type: Number,
+      type: String,
       default: null,
       required: function(){
         return this.organizer
