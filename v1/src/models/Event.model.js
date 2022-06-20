@@ -20,10 +20,15 @@ const Address = new mongoose.Schema({
     type: Number,
     default: null,
     required: true
-  }
+  },
+  _id:false
 })
 
 const eventSchema = new mongoose.Schema({
+  _id: {
+    type: String,
+    default: mongoose.Types.ObjectId()
+  },
   title: {
     type: String,
     required: true,
@@ -68,7 +73,7 @@ eventSchema.pre('save', function(next){
 
   // concat to string
   const joinedWithMinus = arrayWithDate.join('-');
-  this.title = joinedWithMinus;
+  this._id = joinedWithMinus;
   next()
 })
 
