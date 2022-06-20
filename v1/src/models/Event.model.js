@@ -29,19 +29,17 @@ const eventSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  description: {
-    
-  },
+  description: String,
   location: Address,
   host: {
     type: String,
     required: true
   }, // Name des Veranstalters, der Veranstaltungsfirma
   creatorUserId: mongoose.Types.ObjectId, // kann ja sein, das man für jemanden etwas erstellt
-  time: Date,
-  date: Date,
+  eventTime: Date,
+  eventDate: Date,
   cancelled: false,
-  postponed: false, // verschoben
+  postponed: false, // postponed heißt verschoben
   eventTypes: {
     enum: ['Konzert', "Musical", "Oper", "Flashmob", "Buchvorstellung", "SitIn", "Grillen", "Meet & Greet"],
     type: String
