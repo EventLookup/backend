@@ -8,11 +8,11 @@
 
 import { BadRequestError } from "./BadRequest.js";
 import { UnauthenticatedError } from "./Unauthenticated.js";
-
-
+import { NotFound } from "./NotFound.js";
 
 
 export {
   BadRequestError,
-  UnauthenticatedError
+  UnauthenticatedError,
+  NotFound
 }
