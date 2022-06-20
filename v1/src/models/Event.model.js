@@ -1,14 +1,30 @@
 import mongoose from 'mongoose';
 
+const Address = new mongoose.Schema({
+  street: {
+    type: String,
+    default: null
+  },
+  houseNr: {
+    type: String,
+    default: null
+  },
+  city: {
+    type: String,
+    defaul: null
+  },
+  zip: {
+    type: Number,
+    default: null
+  }
+})
+
 const eventSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true
   },
-  location: {
-    type: String,
-    required: true
-  },
+  location: Address,
   host: {
     type: String,
     required: true
