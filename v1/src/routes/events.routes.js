@@ -4,7 +4,8 @@ import {
   createEvent,
   // read
   getAllEvents,
-  getSingleEvent
+  getSingleEvent,
+  updateOneEvent
   // update
   // delete
 } from '../controller/events.controller.js';
@@ -20,5 +21,7 @@ router.route('/events')
 
 router.route('/events/:id')
     .get(getSingleEvent)
+    .patch(updateOneEvent)
+
 
 export default router;

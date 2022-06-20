@@ -25,3 +25,6 @@
 :german-time: 20.6.2022 14:11:49 :method GET :url /favicon.ico :status 401 :size 12 Bytes - :res[time] 0.661ms :ip ::ffff:127.0.0.1
 :german-time: 20.6.2022 14:11:56 :method GET :url /event :status 401 :size 12 Bytes - :res[time] 0.659ms :ip ::ffff:127.0.0.1
 :german-time: 20.6.2022 14:19:43 :method PUT :url /events :status 500 :size 134 Bytes - :res[time] 69.290ms :ip ::ffff:127.0.0.1
+:german-time: 20.6.2022 15:18:55 :method PATCH :url /events/Author-berlin-meeeting-20-6-2022 :status 401 :size 12 Bytes - :res[time] 10.834ms :ip ::ffff:127.0.0.1
+:german-time: 20.6.2022 15:18:58 :method PATCH :url /events/Author-berlin-meeeting-20-6-2022 :status 401 :size 12 Bytes - :res[time] 1.178ms :ip ::ffff:127.0.0.1
+:german-time: 20.6.2022 15:19:30 :method PATCH :url /events/Author-berlin-meeeting-20-6-2022 :status 401 :size 12 Bytes - :res[time] 11.631ms :ip ::ffff:127.0.0.1
