@@ -28,3 +28,11 @@
 :german-time: 20.6.2022 15:18:55 :method PATCH :url /events/Author-berlin-meeeting-20-6-2022 :status 401 :size 12 Bytes - :res[time] 10.834ms :ip ::ffff:127.0.0.1
 :german-time: 20.6.2022 15:18:58 :method PATCH :url /events/Author-berlin-meeeting-20-6-2022 :status 401 :size 12 Bytes - :res[time] 1.178ms :ip ::ffff:127.0.0.1
 :german-time: 20.6.2022 15:19:30 :method PATCH :url /events/Author-berlin-meeeting-20-6-2022 :status 401 :size 12 Bytes - :res[time] 11.631ms :ip ::ffff:127.0.0.1
+:german-time: 20.6.2022 15:50:17 :method DELETE :url /events/ :status 403 :size 9 Bytes - :res[time] 10.160ms :ip ::ffff:127.0.0.1
+:german-time: 20.6.2022 15:55:22 :method DELETE :url /events/1 :status 404 :size 9 Bytes - :res[time] 38.527ms :ip ::ffff:127.0.0.1
+:german-time: 20.6.2022 16:02:59 :method DELETE :url /events/1 :status 404 :size 44 Bytes - :res[time] 59.259ms :ip ::ffff:127.0.0.1
+:german-time: 20.6.2022 16:03:32 :method DELETE :url /events/1 :status 404 :size 44 Bytes - :res[time] 50.931ms :ip ::ffff:127.0.0.1
+:german-time: 20.6.2022 16:04:23 :method DELETE :url /events/1 :status 404 :size 44 Bytes - :res[time] 47.537ms :ip ::ffff:127.0.0.1
+:german-time: 20.6.2022 16:12:44 :method PATCH :url /events/1 :status 404 :size 44 Bytes - :res[time] 39.964ms :ip ::ffff:127.0.0.1
+:german-time: 20.6.2022 16:22:27 :method PATCH :url /events/Author-Chill-out-Area-51-20-6-2022 :status 403 :size 9 Bytes - :res[time] 30.510ms :ip ::ffff:127.0.0.1
+:german-time: 20.6.2022 16:22:30 :method PATCH :url /events/Author-Chill-out-Area-51-20-6-2022 :status 403 :size 9 Bytes - :res[time] 1.881ms :ip ::ffff:127.0.0.1

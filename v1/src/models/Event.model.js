@@ -8,17 +8,14 @@ const Address = new mongoose.Schema({
   },
   houseNr: {
     type: String,
-    default: null,
     required: true
   },
   city: {
     type: String,
-    defaul: null,
     required: true
   },
   zip: {
     type: Number,
-    default: null,
     required: true
   },
   _id:false

@@ -1,1 +1,12 @@
-// TODO[] Schreibe eine not found Error class, siehe BadRequest! Nimm den passenden StatusCode dafür.
+import { StatusCodes } from "http-status-codes";
+
+class NotFound extends Error{
+  constructor(message){
+    super(message);
+    this.statusCode = StatusCodes.NOT_FOUND;
+  }
+}
+
+export {
+  NotFound
+}
