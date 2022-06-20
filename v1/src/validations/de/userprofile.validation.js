@@ -31,8 +31,8 @@ export const userprofileValidationSchema = [
 
     body('street')
         .trim()
-        // .not()
         // Wirklich Zahlen rausfiltern? Es gibt Straßen mit dem Namen 'Straße 442' oder anderer Zahl
+        // .not()
         // .matches(/\d/)
         // .withMessage('Der Straßenname darf keine Zahlen enthalten.')
         .isLength({max: 50}),
@@ -45,9 +45,6 @@ export const userprofileValidationSchema = [
         // .not()
         // .matches(/\D/)
         // .withMessage('Die Hausnummer darf nur aus Zahlen bestehen.')
-        .not()
-        .matches(/\D/)
-        .withMessage('Die Hausnummer darf nur aus Zahlen bestehen.'),
 
     body('city')
         .trim()
