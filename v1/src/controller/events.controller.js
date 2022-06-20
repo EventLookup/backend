@@ -20,7 +20,7 @@ async function getAllEvents(req,res,next) {
     try {
         const events = await Event.find();
         res.status(StatusCodes.OK).json({ 
-          msg: 'Erfolgreicher Empfang von Eventdaten'
+          msg: 'Erfolgreicher Empfang von Eventdaten',
           events 
         });
     } catch(error) {
