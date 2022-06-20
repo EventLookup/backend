@@ -1,4 +1,3 @@
-import { json } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import Event from '../models/Event.model.js';
 
@@ -59,9 +58,25 @@ async function updateOneEvent(req,res,next) {
     }
 };
 
+
+async function deleteOneEvent(req, res, next) {
+  const { id:eventId } = req.params;
+
+  try {
+    const event = await Event.findOneAndDelete({ _id: eventId });
+
+    res.status(StatusCodes.OK).json({
+      msg: `Event mit der ID: ${eventId} wurde gelöscht!`
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export {
   createEvent,
   getAllEvents,
   getSingleEvent,
   updateOneEvent
+  deleteOneEvent
 }

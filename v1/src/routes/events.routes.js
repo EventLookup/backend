@@ -5,9 +5,10 @@ import {
   // read
   getAllEvents,
   getSingleEvent,
-  updateOneEvent
   // update
+  updateOneEvent,
   // delete
+  deleteOneEvent
 } from '../controller/events.controller.js';
 
 const router = Router();
@@ -22,6 +23,6 @@ router.route('/events')
 router.route('/events/:id')
     .get(getSingleEvent)
     .patch(updateOneEvent)
-
+    .delete(deleteOneEvent)
 
 export default router;
