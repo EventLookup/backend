@@ -12,3 +12,13 @@
 :german-time: 15.6.2022 16:16:45 :method GET :url /test :status 403 :res[content-length] 9 - :res[time] 9.287ms:ip ::ffff:127.0.0.1
 :german-time: 15.6.2022 16:17:04 :method GET :url /test :status 403 :res[content-length] 9 - :res[time] 10.117ms :ip ::ffff:127.0.0.1
 :german-time: 15.6.2022 16:20:02 :method GET :url /test :status 403 :size 9Bytes - :res[time] 6.251ms :ip ::ffff:127.0.0.1
+:german-time: 20.6.2022 10:56:04 :method PUT :url /events :status 500 :size 35 Bytes - :res[time] 25.258ms :ip ::ffff:127.0.0.1
+:german-time: 20.6.2022 10:59:10 :method PUT :url /events :status 500 :size 3194 Bytes - :res[time] 23.107ms :ip ::ffff:127.0.0.1
+:german-time: 20.6.2022 11:00:48 :method PUT :url /events :status 500 :size 3194 Bytes - :res[time] 27.693ms :ip ::ffff:127.0.0.1
+:german-time: 20.6.2022 11:03:05 :method PUT :url /events :status 500 :size 3194 Bytes - :res[time] 20.929ms :ip ::ffff:127.0.0.1
+:german-time: 20.6.2022 11:03:57 :method PUT :url /events :status 500 :size 3194 Bytes - :res[time] 32.784ms :ip ::ffff:127.0.0.1
+:german-time: 20.6.2022 11:04:34 :method PUT :url /events :status 500 :size 3194 Bytes - :res[time] 24.255ms :ip ::ffff:127.0.0.1
+:german-time: 20.6.2022 11:05:05 :method PUT :url /events :status 500 :size 3194 Bytes - :res[time] 14.052ms :ip ::ffff:127.0.0.1
+:german-time: 20.6.2022 11:05:24 :method PUT :url /events :status 500 :size 3194 Bytes - :res[time] 21.350ms :ip ::ffff:127.0.0.1
+:german-time: 20.6.2022 11:21:01 :method PUT :url /events :status 500 :size 87 Bytes - :res[time] 40.231ms :ip ::ffff:127.0.0.1
+:german-time: 20.6.2022 11:28:59 :method PUT :url /events :status 500 :size 141 Bytes - :res[time] 67.262ms :ip ::ffff:127.0.0.1

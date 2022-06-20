@@ -11,6 +11,7 @@ import verify from './middleware/authentication.middleware.js'
 // routes imports
 import authRoutes from './routes/auth.routes.js';
 import testRoutes from './routes/TEST.routes.js';
+import eventsRoutes from './routes/events.routes.js';
 
 // config
 import { corsOptions } from './config/corsOption.config.js';
@@ -36,6 +37,7 @@ app.use(cookieParser());
 
 // Routes
 app.use(authRoutes);
+app.use(eventsRoutes);
 app.get('/', (req, res) => {
   res.status(200).send('Backend läuft!');
 })
