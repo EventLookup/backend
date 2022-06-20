@@ -7,7 +7,7 @@ async function createEvent(req, res, next) {
     // MVP
     await Event.create(req.body);
 
-    res.status(StatusCodes.CREATED).send({
+    res.status(StatusCodes.CREATED).json({
      msg: `Event wurde erstellt`
     })
   } catch (error) {
