@@ -14,7 +14,7 @@ async function createEvent(req, res, next) {
     // später einen error handler erstellen der "Event konnte nicht erstellt werden" ausgibt
     next(error)
   }
-}
+};
 
 async function getAllEvents(req,res,next) {
     try {
@@ -29,7 +29,21 @@ async function getAllEvents(req,res,next) {
     }
 };
 
+async function getSingleEvent(req,res,next) {
+    const {id:eventId} = req.params;
+    try{ 
+        const event = await Event.findOne({_id: eventId});
+        res.status(StatusCodes.OK).json({
+            msg: 'Event gefunden und empfangen',
+            event
+        });
+    } catch(error) {
+        next(error);
+    }
+};
+
 export {
   createEvent,
-  getAllEvents
+  getAllEvents,
+  getSingleEvent
 }

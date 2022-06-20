@@ -3,7 +3,8 @@ import {
   // create
   createEvent,
   // read
-  getAllEvents
+  getAllEvents,
+  getSingleEvent
   // update
   // delete
 } from '../controller/events.controller.js';
@@ -18,5 +19,6 @@ router.route('/events')
   
 
 router.route('/events/:id')
+    .get(getSingleEvent)
 
 export default router;

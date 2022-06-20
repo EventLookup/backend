@@ -22,3 +22,6 @@
 :german-time: 20.6.2022 11:05:24 :method PUT :url /events :status 500 :size 3194 Bytes - :res[time] 21.350ms :ip ::ffff:127.0.0.1
 :german-time: 20.6.2022 11:21:01 :method PUT :url /events :status 500 :size 87 Bytes - :res[time] 40.231ms :ip ::ffff:127.0.0.1
 :german-time: 20.6.2022 11:28:59 :method PUT :url /events :status 500 :size 141 Bytes - :res[time] 67.262ms :ip ::ffff:127.0.0.1
+:german-time: 20.6.2022 14:11:49 :method GET :url /favicon.ico :status 401 :size 12 Bytes - :res[time] 0.661ms :ip ::ffff:127.0.0.1
+:german-time: 20.6.2022 14:11:56 :method GET :url /event :status 401 :size 12 Bytes - :res[time] 0.659ms :ip ::ffff:127.0.0.1
+:german-time: 20.6.2022 14:19:43 :method PUT :url /events :status 500 :size 134 Bytes - :res[time] 69.290ms :ip ::ffff:127.0.0.1
