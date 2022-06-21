@@ -49,7 +49,7 @@ async function getSingleEvent(req,res,next) {
             event
         });
     } catch(error) {
-        next(error);
+        next(new BadRequestError(error));
     }
 };
 
@@ -74,6 +74,7 @@ async function updateOneEvent(req,res,next) {
             newEvent
         })
     } catch(error) {
+        // Internal Server Error
         next(error);
     }
 };
