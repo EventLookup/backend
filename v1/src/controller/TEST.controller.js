@@ -2,6 +2,7 @@
 
 // create
 function createOne(req, res, next){
+  console.log(req.user);
   res.send('created')
 }
 

@@ -4,11 +4,12 @@ import {
   BadRequestError,
   NotFound
 } from '../errorHandler/index.js';
-async function createEvent(req, res, next) {
 
+async function createEvent(req, res, next) {
   try {
     // MVP
-    await Event.create(req.body);
+    const event = await Event.create(req.body);
+    event.saveUserId(req.user.userId);
 
     res.status(StatusCodes.CREATED).json({
      msg: `Event wurde erstellt`
@@ -22,6 +23,7 @@ async function createEvent(req, res, next) {
 async function getAllEvents(req,res,next) {
     try {
         const events = await Event.find();
+
         res.status(StatusCodes.OK).json({ 
           msg: 'Erfolgreicher Empfang von Eventdaten',
           events 
@@ -35,12 +37,19 @@ async function getSingleEvent(req,res,next) {
     const {id:eventId} = req.params;
     try{ 
         const event = await Event.findOne({_id: eventId});
+
+        if(!event){
+          throw new BadRequestError(`Kein passendes Event gefunden!`)
+        }
+
+        await event.populate({ path: 'creator', select: 'username -_id'})
+
         res.status(StatusCodes.OK).json({
             msg: 'Event gefunden und empfangen',
             event
         });
     } catch(error) {
-        next(new BadRequestError(error));
+        next(error);
     }
 };
 
@@ -56,7 +65,7 @@ async function updateOneEvent(req,res,next) {
         }
         
         await Event.findOneAndUpdate(
-          {_id: eventId},
+          { _id: eventId },
           newEvent
         );
 
@@ -65,7 +74,6 @@ async function updateOneEvent(req,res,next) {
             newEvent
         })
     } catch(error) {
-        // Internal Server Error
         next(error);
     }
 };

@@ -12,7 +12,10 @@ const jwt = (req, res, next) => {
     process.env.ACCESS_SECRET_TOKEN,
     (err, decoded) => {
       if(err) return res.sendStatus(StatusCodes.FORBIDDEN);
-      req.user = decoded.name;
+      req.user = {
+        name: decoded.name,
+        userId: decoded.userId
+      };
       req.roles = decoded.roles;
       next();
     }
