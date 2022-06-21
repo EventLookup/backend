@@ -36,3 +36,6 @@
 :german-time: 20.6.2022 16:12:44 :method PATCH :url /events/1 :status 404 :size 44 Bytes - :res[time] 39.964ms :ip ::ffff:127.0.0.1
 :german-time: 20.6.2022 16:22:27 :method PATCH :url /events/Author-Chill-out-Area-51-20-6-2022 :status 403 :size 9 Bytes - :res[time] 30.510ms :ip ::ffff:127.0.0.1
 :german-time: 20.6.2022 16:22:30 :method PATCH :url /events/Author-Chill-out-Area-51-20-6-2022 :status 403 :size 9 Bytes - :res[time] 1.881ms :ip ::ffff:127.0.0.1
+:german-time: 21.6.2022 11:50:43 :method PUT :url /events :status 500 :size 1559 Bytes - :res[time] 51.183ms :ip ::ffff:127.0.0.1
+:german-time: 21.6.2022 11:51:09 :method PUT :url /events :status 500 :size 129 Bytes - :res[time] 86.504ms :ip ::ffff:127.0.0.1
+:german-time: 21.6.2022 11:51:40 :method PUT :url /events :status 500 :size 133 Bytes - :res[time] 48.893ms :ip ::ffff:127.0.0.1
