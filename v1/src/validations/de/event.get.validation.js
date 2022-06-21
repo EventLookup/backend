@@ -1,6 +1,6 @@
 import { body } from 'express-validator';
 
-export default eventGetValidationSchema = [
+export default [
     body('title')
         .unescape(),
 

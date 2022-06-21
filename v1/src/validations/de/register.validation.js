@@ -1,6 +1,6 @@
 import { body } from 'express-validator';
 
-export const registerValidationSchema = [
+export default [
     body('email')
         .not()
         .isEmpty()

@@ -53,7 +53,7 @@ const eventSchema = new mongoose.Schema({
     enum: ['Konzert', "Musical", "Oper", "Flashmob", "Buchvorstellung", "SitIn", "Grillen", "Meet & Greet"],
     type: String
   },
-  participants: [mongoose.Types.ObjectId],
+  participants: [{ type: mongoose.Types.ObjectId, ref: "User"}],
   
   maxParticipants: Number,
   website: String,

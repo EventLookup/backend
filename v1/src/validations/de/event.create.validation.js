@@ -1,12 +1,12 @@
 import { body } from 'express-validator';
 
-export const eventcreateValidationSchema = [
+export default [
     body('title')
         .trim()
         .not()
         .isEmpty()
         .withMessage('Bitte fülle dieses Feld aus!')
-        .length({max: 50})
+        .isLength({max: 50})
         .withMessage('Der Titel darf maximal 50 Zeichen lang sein.')
         .escape(),
     
@@ -16,13 +16,12 @@ export const eventcreateValidationSchema = [
         // .not()
         // .isEmpty()
         // .withMessage('Bitte fülle dieses Feld aus!')
-        .length({max: 250})
+        .isLength({max: 250})
         .withMessage('Die Beschreibung darf maximal 250 Zeichen lang sein.')
         .escape(),
     
     body('location.street')
         .trim()
-        .not()
         // Wirklich Zahlen rausfiltern? Es gibt Straßen mit dem Namen 'Straße 442' oder anderer Zahl
         // .matches(/\d/)
         // .withMessage('Der Straßenname darf keine Zahlen enthalten.')
@@ -31,10 +30,7 @@ export const eventcreateValidationSchema = [
     body('location.houseNr')
         .trim()
         .isLength({min: 1, max: 3})
-        .withMessage('Die Hausnummer muss zwischen 1 und 999 sein.')
-        .not()
-        .matches(/\D/)
-        .withMessage('Die Hausnummer darf nur aus Zahlen bestehen.'),
+        .withMessage('Die Hausnummer muss zwischen 1 und 999 sein.'),
     
     body('location.city')
         .trim()
@@ -42,7 +38,7 @@ export const eventcreateValidationSchema = [
         .withMessage('Der Stadtname darf maximal 32 Zeichen lang sein.')
         .not()
         .matches(/\d/)
-        .withMessage('Der stadtname darf keine Zahlen enthalten.'),
+        .withMessage('Der Stadtname darf keine Zahlen enthalten.'),
     
     body('location.zip')
         .trim()
@@ -63,35 +59,27 @@ export const eventcreateValidationSchema = [
         .matches(/\W/)
         .withMessage('Der Hostname darf keine Sonderzeichen enthalten.')
         .escape(),
-    
-    body('creatorUserId')
-        .not()
-        .isEmpty()
-        .withMessage('Bite fülle diese Feld aus.')
-        .length({max: 50})
-        .withMessage('Die Id darf maximal 50 Zeichen lang sein.')
-        .escape()
-    ,
+  /*       
     body('eventTime')
         .not()
         .isEmpty()
         .withMessage('Bitte fülle dieses Feld aus.')
         .isISO8601()
         .withMessage('Bitte gib eine gültige Uhrzeit an.'),
-    
-    body('eventDate')
+     */
+   /*  body('eventDate')
         .not()
         .isEmpty()
         .withMessage('Bitte fülle dieses Feld aus.')
         .isISO8601()
-        .withMessage('Bitte gib ein gültiges Datum an.'),
+        .withMessage('Bitte gib ein gültiges Datum an.'), */
     
     body('cancelled')
         .not()
         .isEmpty()
         .withMessage('Cancelled muss auf true oder false gesetzt sein.')
         .trim()
-        .matches(/^true$|^false$/)
+        .isBoolean()
         .withMessage('Der Wert muss "true" oder "false" sein.'),
     
     body('postponed')
@@ -99,17 +87,17 @@ export const eventcreateValidationSchema = [
         .isEmpty()
         .withMessage('Postponed muss auf true oder false gesetzt sein.')
         .trim()
-        .matches(/^true$|^false$/)
+        .isBoolean()
         .withMessage('Der Wert muss "true" oder "false" sein.'),
     
     body('maxParticipants')
-        .not()
+        /* .not()
         .isEmpty()
-        .withMessage('Bitte fülle dieses Feld aus.')
+        .withMessage('Bitte fülle dieses Feld aus.') */
         .not()
         .matches(/\D/)
         .withMessage('Die Teilnehmerzahl darf nur aus Zahlen bestehen.')
-        .length({max: 5})
+        .isLength({max: 5})
         .withMessage('Die maximale Anzahl an Teilnehmern beträgt 99999'),
     
     body('website')

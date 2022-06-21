@@ -5,9 +5,7 @@ const errorHandlerMiddleware = (err, req, res, next) => {
     statusCode: err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR,
     msg: err.message || 'Etwas lief schief, bitte versuche es später nochmal!'
   }
-
-  // TODO[] error handler middleware zuende schreiben
-
+  
   // wenn ValidationError
   if(err.name === 'ValidationError'){
     customError.statusCode = StatusCodes.BAD_REQUEST;

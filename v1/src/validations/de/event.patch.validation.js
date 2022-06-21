@@ -1,12 +1,12 @@
 import { body } from 'express-validator';
 
-export const eventcreateValidationSchema = [
+export default [
     body('title')
         .trim()
         .not()
         .isEmpty()
         .withMessage('Bitte fülle dieses Feld aus!')
-        .length({max: 50})
+        .isLength({max: 50})
         .withMessage('Der Titel darf maximal 50 Zeichen lang sein.')
         .escape(),
     
@@ -16,7 +16,7 @@ export const eventcreateValidationSchema = [
         // .not()
         // .isEmpty()
         // .withMessage('Bitte fülle dieses Feld aus!')
-        .length({max: 250})
+        .isLength({max: 250})
         .withMessage('Die Beschreibung darf maximal 250 Zeichen lang sein.')
         .escape(),
     
@@ -68,7 +68,7 @@ export const eventcreateValidationSchema = [
         .not()
         .isEmpty()
         .withMessage('Bite fülle diese Feld aus.')
-        .length({max: 50})
+        .isLength({max: 50})
         .withMessage('Die Id darf maximal 50 Zeichen lang sein.')
         .escape()
     ,
@@ -109,7 +109,7 @@ export const eventcreateValidationSchema = [
         .not()
         .matches(/\D/)
         .withMessage('Die Teilnehmerzahl darf nur aus Zahlen bestehen.')
-        .length({max: 5})
+        .isLength({max: 5})
         .withMessage('Die maximale Anzahl an Teilnehmern beträgt 99999'),
     
     body('website')

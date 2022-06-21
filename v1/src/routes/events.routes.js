@@ -11,18 +11,30 @@ import {
   deleteOneEvent
 } from '../controller/events.controller.js';
 
+// validators
+import {
+  eventCreateValidationSchema,
+  eventGetValidationSchema,
+  eventPatchValidationSchema,
+} from '../validations/de/index.validations.js';
+
+// validation function
+import {
+  validateRequest
+} from '../middleware/validateRequest.middleware.js';
+
 const router = Router();
 
 router.route('/events')
      // create
-    .put(createEvent)
+    .put(eventCreateValidationSchema, validateRequest, createEvent)
      // read
-    .get(getAllEvents)
+    .get(eventGetValidationSchema, validateRequest, getAllEvents)
   
 
 router.route('/events/:id')
-    .get(getSingleEvent)
-    .patch(updateOneEvent)
+    .get(eventGetValidationSchema, validateRequest, getSingleEvent)
+    .patch(eventPatchValidationSchema, validateRequest, updateOneEvent)
     .delete(deleteOneEvent)
 
 export default router;

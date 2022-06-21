@@ -1,6 +1,6 @@
 import { body } from 'express-validator';
 
-export const LoginValidationSchema = [
+export default [
     body('email')
         .not()
         .isEmpty()

@@ -1,6 +1,6 @@
 import { body } from 'express-validator';
 
-export const userprofilePatchValidationSchema = [
+export default [
     body('firstname')
         .trim()
         .not()

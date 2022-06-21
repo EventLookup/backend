@@ -5,7 +5,6 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import errorHandlerMiddleware from './middleware/errorHandler.middleware.js';
-import { validateRequest } from './middleware/validateRequest.middleware.js';
 import verify from './middleware/authentication.middleware.js'
 
 // routes imports
