@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import User from './User.model.js';
 
 const Address = new mongoose.Schema({
   street: {
@@ -28,8 +29,11 @@ const eventSchema = new mongoose.Schema({
   },
   title: {
     type: String,
-    required: true,
-    unique: true
+    required: true
+  },
+  titleConstructed:{
+    type: Boolean,
+    default: false
   },
   description: String,
   location: Address,
@@ -37,7 +41,10 @@ const eventSchema = new mongoose.Schema({
     type: String,
     required: true
   }, // Name des Veranstalters, der Veranstaltungsfirma
-  creatorUserId: mongoose.Types.ObjectId, // kann ja sein, das man für jemanden etwas erstellt
+  creator: {
+    type: mongoose.Types.ObjectId,
+    ref: "User"
+  }, // kann ja sein, das man für jemanden etwas erstellt
   eventTime: Date,
   eventDate: Date,
   cancelled: false,
@@ -47,31 +54,39 @@ const eventSchema = new mongoose.Schema({
     type: String
   },
   participants: [mongoose.Types.ObjectId],
+  
   maxParticipants: Number,
   website: String,
   imageUrl: String
 });
 
 eventSchema.pre('save', function(next){
-  const splittedTitle = this.title.split(' ');
-  // Author muss dann mit evetl. populate ausgelesen und hinzugefügt werden
-  const arrayWithAuthor = [...splittedTitle];
-  arrayWithAuthor.unshift('Author');
+  if(!this.titleConstructed){
+    const splittedTitle = this.title.split(' ');
+  
+    // generate date
+    const date = new Date();
+    const day = date.getDate(),
+      month = date.getMonth()+1,
+      year = date.getFullYear(),
+      localTime = date.toLocaleTimeString('de-DE');
+    const dateString = `${day}-${month}-${year}-${localTime}`;
+  
+    const arrayWithDate = [...splittedTitle];
+    arrayWithDate.push(dateString)
+  
+    // concat to string
+    const joinedWithMinus = arrayWithDate.join('-');
+    this._id = joinedWithMinus;
+    this.titleConstructed = true;
+  }
+  next();
+});
 
-  // generate date
-  const date = new Date();
-  const day = date.getDate(),
-    month = date.getMonth()+1,
-    year = date.getFullYear();
-  const dateString = `${day}-${month}-${year}`;
-
-  const arrayWithDate = [...arrayWithAuthor];
-  arrayWithDate.push(dateString)
-
-  // concat to string
-  const joinedWithMinus = arrayWithDate.join('-');
-  this._id = joinedWithMinus;
-  next()
-})
+eventSchema.methods.saveUserId = async function(userId){
+  const user = await User.findOne({ _id: userId });
+  this.creator = user._id;
+  this.save();
+}
 
 export default mongoose.model('Event', eventSchema);

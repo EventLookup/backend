@@ -16,7 +16,7 @@ import ROLES_LIST from '../config/roles.config.js';
 const router = Router();
 
 router.route('/test')
-  .post(verify.roles(ROLES_LIST.admin), createOne)
+  .post(createOne)
   .get(verify.roles(ROLES_LIST.organizer), getAll);
 
 router.route('/test/:id')
