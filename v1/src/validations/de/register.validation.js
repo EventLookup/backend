@@ -17,7 +17,7 @@ export default [
         .trim()
         .isLength({min: 3, max: 50})
         .withMessage('Der Username muss muss zwischen 3 und 50 Zechen lang sein.')
-        .blacklist('<>@${[()]}'),
+        .blacklist('{[(<@$%>)]}'),
 
     body('password')
         .not()
