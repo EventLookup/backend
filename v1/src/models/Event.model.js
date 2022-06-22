@@ -45,8 +45,8 @@ const eventSchema = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: "User"
   }, // kann ja sein, das man für jemanden etwas erstellt
-  eventTime: Date,
-  eventDate: Date,
+  eventTime: String, // event Time and Date vorerst auf String gestellt, vielleicht bleibt das so
+  eventDate: String,
   cancelled: false,
   postponed: false, // postponed heißt verschoben
   eventTypes: {
