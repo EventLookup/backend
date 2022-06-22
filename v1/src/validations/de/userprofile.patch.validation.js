@@ -6,14 +6,14 @@ export default [
         .not()
         .matches(/\d/)
         .withMessage('Der Vorname darf keine Zahlen enthalten.')
-        .blacklist('<>@${[()]}'),
+        .blacklist(/(?:\{|\[|\(|\<|\>|\)|\]|\}|\@|\$|\%)/),
         
     body('lastname')
         .trim()
         .not()
         .matches(/\d/)
         .withMessage('Der Nachname darf keine Zahlen enthalten.')
-        .blacklist('<>@${[()]}'),
+        .blacklist(/(?:\{|\[|\(|\<|\>|\)|\]|\}|\@|\$|\%)/),
 
     body('organizer')
         .not()
