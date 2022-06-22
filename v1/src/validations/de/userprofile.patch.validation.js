@@ -6,20 +6,14 @@ export default [
         .not()
         .matches(/\d/)
         .withMessage('Der Vorname darf keine Zahlen enthalten.')
-        .not()
-        .matches(/\W/)
-        .withMessage('Der Vorname darf keine Sonderzeichen enthalten.')
-        .escape(),
+        .blacklist('<>@${[()]}'),
         
     body('lastname')
         .trim()
         .not()
         .matches(/\d/)
         .withMessage('Der Nachname darf keine Zahlen enthalten.')
-        .not()
-        .matches(/\W/)
-        .withMessage('Der Nachname darf keine Sonderzeichen enthalten.')
-        .escape(),
+        .blacklist('<>@${[()]}'),
 
     body('organizer')
         .not()

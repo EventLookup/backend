@@ -8,7 +8,7 @@ export default [
         .withMessage('Bitte fülle dieses Feld aus!')
         .isLength({max: 50})
         .withMessage('Der Titel darf maximal 50 Zeichen lang sein.')
-        .escape(),
+        .blacklist('<>@${[()]}'),
     
     body('description')
         .trim()
@@ -18,7 +18,7 @@ export default [
         // .withMessage('Bitte fülle dieses Feld aus!')
         .isLength({max: 250})
         .withMessage('Die Beschreibung darf maximal 250 Zeichen lang sein.')
-        .escape(),
+        .blacklist('<>@${[()]}'),
     
     body('location.street')
         .trim()
@@ -58,7 +58,7 @@ export default [
         .not()
         .matches(/\W/)
         .withMessage('Der Hostname darf keine Sonderzeichen enthalten.')
-        .escape(),
+        .blacklist('<>@${[()]}'),
   /*       
     body('eventTime')
         .not()
