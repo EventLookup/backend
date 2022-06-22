@@ -60,17 +60,34 @@ const eventSchema = new mongoose.Schema({
   imageUrl: String
 });
 
+
+const generateDateString = () => {
+   // generate date
+   const date = new Date();
+   const day = date.getDate(),
+     month = date.getMonth()+1,
+     year = date.getFullYear(),
+     localTime = date.toLocaleTimeString('de-DE');
+   const dateString = `${day}-${month}-${year}-${localTime}`;
+
+   return dateString;
+};
+
+const deleteOrReplaceSymbols = (str) => {
+  let replacedString = str.replace(/(?:ß)/g, 'ss');
+  let replacementTitle = replacedString.split(/\W/);
+  replacementTitle = replacementTitle.filter( string => string !== '' );
+
+  return replacementTitle;
+};
+
 eventSchema.pre('save', function(next){
+  // if true don't repeat
   if(!this.titleConstructed){
-    const splittedTitle = this.title.split(' ');
-  
-    // generate date
-    const date = new Date();
-    const day = date.getDate(),
-      month = date.getMonth()+1,
-      year = date.getFullYear(),
-      localTime = date.toLocaleTimeString('de-DE');
-    const dateString = `${day}-${month}-${year}-${localTime}`;
+    const splittedTitle = deleteOrReplaceSymbols(this.title)
+    this.title = splittedTitle.join(' ')
+
+    const dateString = generateDateString();
   
     const arrayWithDate = [...splittedTitle];
     arrayWithDate.push(dateString)
