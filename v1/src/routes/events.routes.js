@@ -14,7 +14,6 @@ import {
 // validators
 import {
   eventCreateValidationSchema,
-  eventGetValidationSchema,
   eventPatchValidationSchema,
 } from '../validations/de/index.validations.js';
 
@@ -29,11 +28,11 @@ router.route('/events')
      // create
     .put(eventCreateValidationSchema, validateRequest, createEvent)
      // read
-    .get(eventGetValidationSchema, validateRequest, getAllEvents)
+    .get(getAllEvents)
   
 
 router.route('/events/:id')
-    .get(eventGetValidationSchema, validateRequest, getSingleEvent)
+    .get(getSingleEvent)
     .patch(eventPatchValidationSchema, validateRequest, updateOneEvent)
     .delete(deleteOneEvent)
 
