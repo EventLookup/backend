@@ -13,9 +13,7 @@ import {
 
 // validators
 import {
-  eventCreateValidationSchema,
-  eventGetValidationSchema,
-  eventPatchValidationSchema,
+  eventValidationSchema,
 } from '../validations/de/index.validations.js';
 
 // validation function
@@ -27,14 +25,14 @@ const router = Router();
 
 router.route('/events')
      // create
-    .put(eventCreateValidationSchema, validateRequest, createEvent)
+    .put(eventValidationSchema, validateRequest, createEvent)
      // read
-    .get(eventGetValidationSchema, validateRequest, getAllEvents)
+    .get(getAllEvents)
   
 
 router.route('/events/:id')
-    .get(eventGetValidationSchema, validateRequest, getSingleEvent)
-    .patch(eventPatchValidationSchema, validateRequest, updateOneEvent)
+    .get(getSingleEvent)
+    .patch(eventValidationSchema, validateRequest, updateOneEvent)
     .delete(deleteOneEvent)
 
 export default router;
