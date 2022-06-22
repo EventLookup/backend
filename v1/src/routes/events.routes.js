@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import verify from '../middleware/authentication.middleware.js';
 import {
   // create
   createEvent,
@@ -25,14 +26,27 @@ const router = Router();
 
 router.route('/events')
      // create
-    .put(eventValidationSchema, validateRequest, createEvent)
+    .put(
+      verify.jwt, 
+      eventValidationSchema, 
+      validateRequest, 
+      createEvent
+      )
      // read
     .get(getAllEvents)
   
 
 router.route('/events/:id')
     .get(getSingleEvent)
-    .patch(eventValidationSchema, validateRequest, updateOneEvent)
-    .delete(deleteOneEvent)
+    .patch(
+      verify.jwt, 
+      eventValidationSchema,
+      validateRequest, 
+      updateOneEvent
+      )
+    .delete(
+      verify.jwt, 
+      deleteOneEvent
+      )
 
 export default router;

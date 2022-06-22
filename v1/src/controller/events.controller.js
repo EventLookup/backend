@@ -1,10 +1,18 @@
 import { StatusCodes } from 'http-status-codes';
+// Model
 import Event from '../models/Event.model.js';
+// error handler
 import { 
   BadRequestError,
   NotFound,
   Unauthorized
 } from '../errorHandler/index.js';
+
+// util
+import { 
+  createSearchQuery,
+  pageSkip 
+} from '../util/helpers.js';
 
 async function createEvent(req, res, next) {
   try {
@@ -22,16 +30,28 @@ async function createEvent(req, res, next) {
 };
 
 async function getAllEvents(req,res,next) {
-    try {
-        const events = await Event.find();
+    // standard limit auf 20
+    // standard Sortierung Title
 
-        if(!events){
-          throw new BadRequestError('Konnte keine Events finden!');
-        }
-        res.status(StatusCodes.OK).json({ 
-          msg: 'Erfolgreicher Empfang von Eventdaten',
-          events 
-        });
+    const searchQuery = createSearchQuery(req.query);
+    const query = pageSkip(req.query);
+
+    try {
+      
+      const events = await Event.find(searchQuery)
+        .skip( query.skip )
+        .limit( query.limit )
+        .sort({ title: 1 })
+      
+    
+      if(!events){
+        throw new BadRequestError('Konnte keine Events finden!');
+      }
+      res.status(StatusCodes.OK).json({
+        length: events.length,
+        msg: 'Erfolgreicher Empfang von Eventdaten',
+        events 
+      });
     } catch(error) {
         next(error);
     }

@@ -36,7 +36,7 @@ app.use(cookieParser());
 
 // Routes
 app.use(authRoutes);
-app.use(verify.jwt, eventsRoutes);
+app.use(eventsRoutes);
 
 app.get('/', (req, res) => {
   res.status(200).send('Backend läuft!');

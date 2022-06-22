@@ -28,7 +28,7 @@ export default [
     
     body('location.houseNr')
         .trim()
-        .isLength({min: 1, max: 3})
+        .isLength({min: 1, max: 4}) // 999 + Buchstabe
         .withMessage('Die Hausnummer muss zwischen 1 und 999 sein.'),
     
     body('location.city')
@@ -55,9 +55,16 @@ export default [
         .isLength({min: 3, max: 50})
         .withMessage('Der Hostname muss muss zwischen 3 und 50 Zechen lang sein.')
         .not()
-        .matches(/\W/)
+        .matches(/\W!\s/)
         .withMessage('Der Hostname darf keine Sonderzeichen enthalten.')
         .blacklist('{[(<@$%>)]}'),
+
+        body('eventTime')
+        .not()
+        .isEmpty()
+        .withMessage('Bitte fülle dieses Feld aus.')
+        .matches(/^(10|11|12|13|14|15|16|17|18|19|20|21|22|23|[1-9]):[0-5][0-9]$/)
+        .withMessage('Bitte gib eine gültige Uhrzeit an.'),
   /*       
     body('eventTime')
         .not()
