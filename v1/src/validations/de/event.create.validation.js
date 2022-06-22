@@ -7,8 +7,7 @@ export default [
         .isEmpty()
         .withMessage('Bitte fülle dieses Feld aus!')
         .isLength({max: 50})
-        .withMessage('Der Titel darf maximal 50 Zeichen lang sein.')
-        .escape(),
+        .withMessage('Der Titel darf maximal 50 Zeichen lang sein.'),
     
     body('description')
         .trim()
