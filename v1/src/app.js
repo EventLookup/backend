@@ -13,7 +13,7 @@ import testRoutes from './routes/TEST.routes.js';
 import eventsRoutes from './routes/events.routes.js';
 
 // config
-import { corsOptions } from './config/corsOption.config.js';
+import { corsOptions } from './config/corsOptions.config.js';
 import morganConfig from './config/morgan.config.js';
 
 
