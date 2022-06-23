@@ -35,7 +35,9 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Routes
+// signup, login, refresh
 app.use(authRoutes);
+// all event specific routes
 app.use(eventsRoutes);
 
 app.get('/', (req, res) => {
