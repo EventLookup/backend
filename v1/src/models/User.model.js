@@ -11,28 +11,6 @@ import jwt from 'jsonwebtoken';
 import { UnauthorizedError } from '../errorHandler/index.js';
 import { StatusCodes } from 'http-status-codes';
 
-/* const addressSchema = new mongoose.Schema({
-  street:{
-    type: String,
-    required: function () {
-      return this.organizier
-    }
-  },
-  houseNr: {
-    type: Number,
-    // required: true
-  },
-  city: {
-    type: String,
-    // required: true
-  },
-  zip: {
-    type: Number,
-    // required: true
-  },
-  _id: false
-}); */
-
 const userSchema = new mongoose.Schema({
   organizer: {
     type: Boolean,

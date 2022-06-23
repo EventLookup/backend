@@ -22,7 +22,7 @@ import morganConfig from './config/morgan.config.js';
 const app = express();
 
 // Cross-Origin Resource Sharing
-app.use(cors()); // TODO[] muss zum ende hin noch corsOptions rein
+app.use(cors(corsOptions));
 
 // logging logic
 app.use(morganConfig);

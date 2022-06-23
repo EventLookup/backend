@@ -1,5 +1,9 @@
 const corsOptions = {
-  origin: "", // TODO[] am ende muss noch eine whitelist quasi gemacht werden, von wo gefetched werden kann
+  origin: [
+    "https://eventlookup.netlify.app/",
+    "http://localhost:3000",
+    "http://localhost:3001"
+  ],
   optionsSuccessStatus: 200
 }
 
