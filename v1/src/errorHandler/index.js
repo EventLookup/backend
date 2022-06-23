@@ -7,12 +7,12 @@
 // TODO[] Ergänze die index.js mit den restlichen Error Klassen
 
 import { BadRequestError } from "./BadRequest.js";
-import { Unauthorized } from "./Unauthorized.js";
-import { NotFound } from "./NotFound.js";
+import { UnauthorizedError } from "./Unauthorized.js";
+import { NotFoundError } from "./NotFound.js";
 
 
 export {
   BadRequestError,
-  Unauthorized,
-  NotFound
+  UnauthorizedError,
+  NotFoundError
 }
