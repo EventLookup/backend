@@ -8,7 +8,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 // error handling
-import { Unauthorized } from '../errorHandler/index.js';
+import { UnauthorizedError } from '../errorHandler/index.js';
 import { StatusCodes } from 'http-status-codes';
 
 /* const addressSchema = new mongoose.Schema({
@@ -175,10 +175,10 @@ userSchema.methods.comparePassword = async function(canditatePassword){
 // Suche den User mit email und gib uns die Tokens
 userSchema.statics.login = async function(email, password){
   const user = await this.findOne({ email });
-  if(!user) throw new Unauthorized('Falsche E-Mail Adresse oder falsches Passwort');
+  if(!user) throw new UnauthorizedError('Falsche E-Mail Adresse oder falsches Passwort');
 
   const auth = await user.comparePassword(password);
-  if(!auth) throw new Unauthorized('Falsche E-Mail Adresse oder falsches Passwort');
+  if(!auth) throw new UnauthorizedError('Falsche E-Mail Adresse oder falsches Passwort');
 
   const accessToken = user.createAndGetAccessToken();
   const refreshToken = user.createGetAndStoreRefreshToken(email);
@@ -229,9 +229,6 @@ userSchema.statics.refreshToken = async function(res, refreshToken){
     process.env.REFRESH_SECRET_TOKEN,
     async (err, decoded) => {
       if( err || user.username !== decoded.name) return res.sendStatus(StatusCodes.FORBIDDEN);
-      
-      // evtl Fehler mit den rollen, falls nicht muss kommi weg
-
       const accessToken = await user.createAndGetAccessToken();
 
       res.json({ accessToken })

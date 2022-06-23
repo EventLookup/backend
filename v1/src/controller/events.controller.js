@@ -4,8 +4,8 @@ import Event from '../models/Event.model.js';
 // error handler
 import { 
   BadRequestError,
-  NotFound,
-  Unauthorized
+  NotFoundError,
+  UnauthorizedError
 } from '../errorHandler/index.js';
 
 // util
@@ -85,7 +85,7 @@ async function updateOneEvent(req,res,next) {
         const event = await Event.findOne({ _id: eventId });
 
         if(!event){
-          throw new NotFound(`Kein Event mit der ID: ${eventId} gefunden!`)
+          throw new NotFoundError(`Kein Event mit der ID: ${eventId} gefunden!`)
         }
         
         await Event.findOneAndUpdate(
@@ -110,11 +110,11 @@ async function deleteOneEvent(req, res, next) {
     const event = await Event.findOne({ _id: eventId });
 
     if(!event) {
-      throw new NotFound(`Kein Event mit der ID: ${eventId} gefunden!`);
+      throw new NotFoundError(`Kein Event mit der ID: ${eventId} gefunden!`);
     }
 
     if(event.creator.toString() !== req.user.userId){
-      throw new Unauthorized('Dieses Event darf nur der Ersteller löschen!')
+      throw new UnauthorizedError('Dieses Event darf nur der Ersteller löschen!')
     }
 
     await Event.findOneAndDelete({ _id: eventId });
