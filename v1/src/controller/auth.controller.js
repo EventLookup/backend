@@ -66,7 +66,6 @@ async function handleLogout(req, res, next){
     next(error)
   }
 }
-
 async function handleRefreshToken(req, res, next){
   const refreshToken = checkForCookies(req);
   
