@@ -15,6 +15,7 @@ import {
 // validators
 import {
   eventValidationSchema,
+  queryValidationSchema
 } from '../validations/de/index.validations.js';
 
 // validation function
@@ -33,7 +34,11 @@ router.route('/events')
       createEvent
       )
      // read
-    .get(getAllEvents)
+    .get(
+      queryValidationSchema,
+      validateRequest,
+      getAllEvents
+      )
   
 
 router.route('/events/:id')
