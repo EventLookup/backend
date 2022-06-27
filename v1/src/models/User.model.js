@@ -10,6 +10,7 @@ import jwt from 'jsonwebtoken';
 // error handling
 import { UnauthorizedError } from '../errorHandler/index.js';
 import { StatusCodes } from 'http-status-codes';
+import cookieConfig from '../config/cookie.config.js';
 
 const userSchema = new mongoose.Schema({
   organizer: {
@@ -171,22 +172,9 @@ userSchema.statics.login = async function(email, password){
 // Suche den User mit dem refreshToken und lösche diesen
 userSchema.statics.logout = async function(res, refreshToken){
   const user = await this.findOne({refreshToken});
-  
-  const hours = 24,
-      minutes = 60,
-      seconds = 60,
-      milliseconds = 1000;
-  const oneDay = hours * minutes * seconds * milliseconds;
-
-  const options = {
-    httpOnly: true,
-    sameSite: 'None',
-    secure: process.env.NODE_ENV === 'production',
-    maxAge: oneDay
-  }
 
   if(!user){
-    res.clearCookie('jwt', options);
+    res.clearCookie('jwt', cookieConfig);
     return res.sendStatus(StatusCodes.NO_CONTENT);
   }
 
@@ -194,7 +182,7 @@ userSchema.statics.logout = async function(res, refreshToken){
 
   user.save();
 
-  res.clearCookie('jwt', options);
+  res.clearCookie('jwt', cookieConfig);
 }
 
 // generiere mit dem refrehToken einen neuen access token "erfrische token"

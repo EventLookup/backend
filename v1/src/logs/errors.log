@@ -11,3 +11,5 @@
 :german-time: 27.6.2022 10:39:40 :method GET :url /event :status 403 :size 9 Bytes - :res[time] 2.797ms :ip ::ffff:127.0.0.1
 :german-time: 27.6.2022 10:39:59 :method GET :url /events?website=titanic.de :status 400 :size 120 Bytes - :res[time] 1.513ms :ip ::ffff:127.0.0.1
 :german-time: 27.6.2022 10:40:30 :method GET :url /events?host=Polizei&website=%20wiestopptmangewalt.de :status 400 :size 149 Bytes - :res[time] 1.012ms :ip ::ffff:127.0.0.1
+:german-time: 27.6.2022 18:16:46 :method GET :url /events?website=titanic.de :status 400 :size 120 Bytes - :res[time] 9.113ms :ip ::ffff:127.0.0.1
+:german-time: 27.6.2022 20:16:14 :method GET :url /favicon.ico :status 401 :size 12 Bytes - :res[time] 1.160ms :ip ::ffff:127.0.0.1
