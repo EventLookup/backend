@@ -1,4 +1,5 @@
 import { StatusCodes } from 'http-status-codes';
+import cookieConfig from '../config/cookie.config.js';
 import { BadRequestError } from '../errorHandler/BadRequest.js';
 import User from '../models/User.model.js';
 
@@ -24,24 +25,16 @@ async function handleSignUp(req, res, next){
 
 async function handleLogin(req, res, next){
   const { email, password } = req.body;
-
+  console.log('OBEN:');
+  console.log(req.headers);
+  console.log('\nAUTHORIZATION',req.headers.authorization);
   try {
    const { user, refreshToken, accessToken }= await User.login(email, password);
     
-    const hours = 24,
-      minutes = 60,
-      seconds = 60,
-      milliseconds = 1000;
-    const oneDay = hours * minutes * seconds * milliseconds;
-
     res.cookie(
       'jwt', 
       refreshToken, 
-      { 
-        httpOnly: true, sameSite: 'None', 
-        secure: process.env.NODE_ENV === 'production',
-        maxAge: oneDay
-      }
+      cookieConfig
     )
     // res.redirect('/') // hier könnte man den Nutzer direkt weiterleiten
     res.status(StatusCodes.ACCEPTED).json({
@@ -55,7 +48,7 @@ async function handleLogin(req, res, next){
 
 const checkForCookies = (req) => {
   const cookies = req.cookies;
-  if(!cookies?.jwt) return false;
+  if(!cookies?.jwt) throw BadRequestError('Cookie wurde nicht gefunden!');
   return cookies.jwt;
 }
 async function handleLogout(req, res, next){
