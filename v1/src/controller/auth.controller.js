@@ -48,7 +48,6 @@ async function handleLogin(req, res, next){
 
 const checkForCookies = (req) => {
   const cookies = req.cookies;
-  console.log(cookies)
   if(!cookies?.jwt) throw BadRequestError('Cookie wurde nicht gefunden!');
   return cookies.jwt;
 }
