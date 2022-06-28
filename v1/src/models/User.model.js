@@ -169,7 +169,7 @@ userSchema.statics.login = async function(email, password){
   };
 }
 
-// Suche den User mit dem refreshToken und lösche diesen
+// Suche den User mit dem refreshToken und lösche den Token
 userSchema.statics.logout = async function(res, refreshToken){
   const user = await this.findOne({refreshToken});
 
