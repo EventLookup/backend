@@ -5,7 +5,7 @@ const hours = 24,
 const oneDay = hours * minutes * seconds * milliseconds;
 export default {
   httpOnly: true,
-  sameSite: 'lax',
+  sameSite: 'none',
   secure: process.env.NODE_ENV === 'production',
   maxAge: oneDay
 }

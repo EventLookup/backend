@@ -25,9 +25,7 @@ async function handleSignUp(req, res, next){
 
 async function handleLogin(req, res, next){
   const { email, password } = req.body;
-  console.log('OBEN:');
-  console.log(req.headers);
-  console.log('\nAUTHORIZATION',req.headers.authorization);
+
   try {
    const { user, refreshToken, accessToken }= await User.login(email, password);
     
@@ -36,9 +34,10 @@ async function handleLogin(req, res, next){
       refreshToken, 
       cookieConfig
     )
-    // res.redirect('/') // hier könnte man den Nutzer direkt weiterleiten
+
     res.status(StatusCodes.ACCEPTED).json({
       msg: `Hallo ${user.username}!`,
+      user,
       accessToken 
     });
   } catch (error) {
@@ -48,7 +47,8 @@ async function handleLogin(req, res, next){
 
 const checkForCookies = (req) => {
   const cookies = req.cookies;
-  if(!cookies?.jwt) throw BadRequestError('Cookie wurde nicht gefunden!');
+  console.log(req);
+  if(!cookies?.jwt) return false;
   return cookies.jwt;
 }
 async function handleLogout(req, res, next){
