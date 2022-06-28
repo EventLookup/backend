@@ -5,14 +5,29 @@ import {
   handleLogout,
   handleRefreshToken
 } from '../controller/auth.controller.js';
+import { validateRequest } from '../middleware/validateRequest.middleware.js';
+
+// validators
+import {
+  loginValidationSchema,
+  registerValidationSchema
+} from '../validations/de/index.validations.js';
 
 const router = Router();
 
 router.route('/signup')
-  .post(handleSignUp);
+  .post(
+    registerValidationSchema,
+    validateRequest,
+    handleSignUp
+  );
 
 router.route('/login')
-  .post(handleLogin);
+  .post(
+    loginValidationSchema,
+    validateRequest,
+    handleLogin
+  );
 
 router.route('/logout')
   .get(handleLogout);
