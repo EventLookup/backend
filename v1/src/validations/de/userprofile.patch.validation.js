@@ -25,21 +25,14 @@ export default [
 
     body('street')
         .trim()
-        // Wirklich Zahlen rausfiltern? Es gibt Straßen mit dem Namen 'Straße 442' oder anderer Zahl
-        // .not()
-        // .matches(/\d/)
-        // .withMessage('Der Straßenname darf keine Zahlen enthalten.')
-        .isLength({max: 50}),
+        .isLength({max: 50})
+        .withMessage(''),
 
     body('houseNr')
         .trim()
         .isLength({min: 1, max: 3})
         .withMessage('Die Hausnummer muss zwischen 1 und 999 sein.'),
-        // Nicht filtern weil es noch Zusätze gibt wie z.B.: 11b
-        // .not()
-        // .matches(/\D/)
-        // .withMessage('Die Hausnummer darf nur aus Zahlen bestehen.')
-
+        
     body('city')
         .trim()
         .isLength({max: 32})
