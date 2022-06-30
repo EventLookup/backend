@@ -5,26 +5,20 @@ export default [
         .trim()
         .not()
         .isEmpty()
-        .withMessage('Bitte fülle dieses Feld aus!')
+        .withMessage('Bitte gib den Namen der Veranstaltung an')
         .isLength({max: 50})
         .withMessage('Der Titel darf maximal 50 Zeichen lang sein.'),
     
     body('description')
         .trim()
-        // Kein Zwang zur Angabe
-        // .not()
-        // .isEmpty()
-        // .withMessage('Bitte fülle dieses Feld aus!')
         .isLength({max: 250})
         .withMessage('Die Beschreibung darf maximal 250 Zeichen lang sein.')
         .blacklist(/(?:\{|\[|\<|\>|\]|\}|\$)/),
     
     body('location.street')
         .trim()
-        // Wirklich Zahlen rausfiltern? Es gibt Straßen mit dem Namen 'Straße 442' oder anderer Zahl
-        // .matches(/\d/)
-        // .withMessage('Der Straßenname darf keine Zahlen enthalten.')
-        .isLength({max: 50}),
+        .isLength({max: 50})
+        .withMessage('Der Straßenname darf maximal 50 Zeichen enthalten.'),
     
     body('location.houseNr')
         .trim()
@@ -50,7 +44,7 @@ export default [
     body('host')
         .not()
         .isEmpty()
-        .withMessage('Bitte fülle dieses Feld aus.')
+        .withMessage('Bitte gib den Name des Hosts ein.')
         .trim()
         .isLength({min: 3, max: 50})
         .withMessage('Der Hostname muss muss zwischen 3 und 50 Zechen lang sein.')
@@ -62,24 +56,10 @@ export default [
         body('eventTime')
         .not()
         .isEmpty()
-        .withMessage('Bitte fülle dieses Feld aus.')
+        .withMessage('Bitte gib die Uhrzeit ds Events an.')
         .matches(/^(10|11|12|13|14|15|16|17|18|19|20|21|22|23|[1-9]):[0-5][0-9]$/)
         .withMessage('Bitte gib eine gültige Uhrzeit an.'),
-  /*       
-    body('eventTime')
-        .not()
-        .isEmpty()
-        .withMessage('Bitte fülle dieses Feld aus.')
-        .isISO8601()
-        .withMessage('Bitte gib eine gültige Uhrzeit an.'),
-     */
-   /*  body('eventDate')
-        .not()
-        .isEmpty()
-        .withMessage('Bitte fülle dieses Feld aus.')
-        .isISO8601()
-        .withMessage('Bitte gib ein gültiges Datum an.'), */
-    
+
     body('cancelled')
         .not()
         .isEmpty()
@@ -97,9 +77,6 @@ export default [
         .withMessage('Der Wert muss "true" oder "false" sein.'),
     
     body('maxParticipants')
-        /* .not()
-        .isEmpty()
-        .withMessage('Bitte fülle dieses Feld aus.') */
         .not()
         .matches(/\D/)
         .withMessage('Die Teilnehmerzahl darf nur aus Zahlen bestehen.')
@@ -108,6 +85,5 @@ export default [
     
     body('website')
         .trim()
-        .isURL()
-        .withMessage('Bitte gib eine gültige URL ein.')
+        .blacklist('{[(<@$%>)]}')
 ]

@@ -8,7 +8,24 @@ const createSearchQuery = (query) => {
     }
 
     if(key === 'day'){
-      obj['eventDate'] = query[key];
+      const queryDayRegExp = new RegExp(`${query[key]}.`);
+      // console.log(queryDayRegExp);
+      obj['eventDate'] = {$in: [queryDayRegExp]}
+      return obj;
+    }
+
+    if(key === 'month'){
+      const currentYear = new Date().getFullYear();
+      const queryMonthRegExp = new RegExp(`.${query[key]}.${currentYear}`);
+      // console.log(queryMonthRegExp);
+      obj['eventDate'] = {$in: [queryMonthRegExp]}
+      return obj;
+    }
+
+    if(key === 'year'){
+      const queryYearRegExp = new RegExp(`.${query[key]}`);
+      // console.log(queryYearRegExp);
+      obj['eventDate'] = {$in: [queryYearRegExp]}
       return obj;
     }
     
