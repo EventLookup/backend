@@ -15,11 +15,12 @@ import cookieConfig from '../config/cookie.config.js';
 const userSchema = new mongoose.Schema({
   organizer: {
     type: Boolean,
-    required: true
+    required: true,
+    default: false
   },
   email: {
     type: String,
-    // unique: true,
+    unique: true,
     required: true
   },
   password: {
@@ -28,7 +29,7 @@ const userSchema = new mongoose.Schema({
   },
   username: {
     type: String,
-    // unique: true,
+    unique: true,
     required: true
   },
   firstname: {
