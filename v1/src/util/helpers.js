@@ -8,9 +8,7 @@ const createSearchQuery = (query) => {
     }
 
     if(key === 'day'){
-      const queryDayRegExp = new RegExp(`${query[key]}.`);
-      // console.log(queryDayRegExp);
-      obj['eventDate'] = {$in: [queryDayRegExp]}
+      obj['eventDate'] = query[key];
       return obj;
     }
 
