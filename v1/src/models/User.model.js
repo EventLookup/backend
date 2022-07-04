@@ -108,13 +108,11 @@ const userSchema = new mongoose.Schema({
   }
 });
 
-// TODO[x](Dima) signup, access & refresh, logout
-
 // hash das password
-userSchema.methods.hashPassword = async function(){
+userSchema.methods.hashPassword = async function(err, doc, next){
   const saltRounds = 10;
   this.password = await bcrypt.hash(this.password, saltRounds);
-  this.save();
+  await this.save();
 }
 
 const getRolesArray = (schema)=> {
@@ -132,7 +130,7 @@ userSchema.methods.createAndGetAccessToken = function(){
 };
 
 // erstelle ein REFRESH TOKEN und speichere es
-userSchema.methods.createGetAndStoreRefreshToken = function(){
+userSchema.methods.createGetAndStoreRefreshToken = async function(){
   const rolesArray = getRolesArray(this);
   const refreshToken = jwt.sign(
     { name: this.username, roles: rolesArray },
@@ -141,7 +139,7 @@ userSchema.methods.createGetAndStoreRefreshToken = function(){
   );
   
   this.refreshToken = refreshToken;
-  this.save();
+  await this.save();
 
   return refreshToken; 
 };
@@ -163,8 +161,10 @@ userSchema.statics.login = async function(email, password){
   const accessToken = user.createAndGetAccessToken();
   const refreshToken = user.createGetAndStoreRefreshToken(email);
   
+  const u = await this.findOne({ email }).select('-password -__v -refreshToken')
+
   return {
-    user,
+    user: u,
     accessToken,
     refreshToken
   };
@@ -181,7 +181,7 @@ userSchema.statics.logout = async function(res, refreshToken){
 
   user.refreshToken = null;
 
-  user.save();
+  await user.save();
 
   res.clearCookie('jwt', cookieConfig);
 }
