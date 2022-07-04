@@ -8,8 +8,13 @@ const validateRequest = (req, res, next) => {
   if(validationErrors.isEmpty()){
     next();
   } else {
+    const errors = validationErrors.array().reduce((obj, err) => {
+      obj[err.param] = err.msg;
+      return obj
+    },{});
+    
     return res.status(StatusCodes.BAD_REQUEST).json({
-      errors: validationErrors.array()
+      msg: errors 
     })
   }
 }
