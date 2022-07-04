@@ -1,22 +1,16 @@
 import { StatusCodes } from 'http-status-codes';
 import cookieConfig from '../config/cookie.config.js';
-import { BadRequestError } from '../errorHandler/BadRequest.js';
 import User from '../models/User.model.js';
-
-// TODO[] vor signup muss express validator geschaltet werden
 async function handleSignUp(req, res, next){
   try {
     const { email, password, username } = req.body;
-
     const user = await new User(req.body);
     
     if(email && password && username) {
-      user.hashPassword();
+      await user.hashPassword();
       return res.status(StatusCodes.CREATED).json({
         msg: `Für ${req.body.username} wurde ein Benutzerkonto angelegt!`
       })
-    } else {
-      throw new BadRequestError('Keine Daten angegeben!')
     }
   } catch (error) {
     next(error);
