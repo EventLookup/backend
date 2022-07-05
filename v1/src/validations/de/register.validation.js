@@ -8,7 +8,7 @@ export default [
         .withMessage('Bitte gib einen enuzernamen an.')
         .trim()
         .isLength({min: 3, max: 50})
-        .withMessage('Der Username muss muss zwischen 3 und 50 Zechen lang sein.')
+        .withMessage('Der Username muss muss zwischen 3 und 50 Zeichen lang sein.')
         .blacklist('{[(<@$%>)]}'),
 
     body('email')
