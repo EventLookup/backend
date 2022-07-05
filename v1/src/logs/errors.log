@@ -21,3 +21,4 @@
 :german-time: 5.7.2022 08:57:15 :method POST :url /signup :status 400 :size 309 Bytes - :res[time] 117.841ms :ip ::ffff:127.0.0.1
 :german-time: 5.7.2022 08:58:21 :method POST :url /signup :status 409 :size 39 Bytes - :res[time] 104.859ms :ip ::ffff:127.0.0.1
 :german-time: 5.7.2022 09:03:12 :method POST :url /signup :status 409 :size 39 Bytes - :res[time] 133.081ms :ip ::ffff:127.0.0.1
+:german-time: 5.7.2022 09:10:31 :method POST :url /signup :status 400 :size 309 Bytes - :res[time] 123.069ms :ip ::ffff:127.0.0.1
