@@ -9,6 +9,7 @@ const validateRequest = (req, res, next) => {
     next();
   } else {
     const errors = validationErrors.array().reduce((obj, err) => {
+      console.log('validate request',err);
       obj[err.param] = err.msg;
       return obj
     },{});
