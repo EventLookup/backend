@@ -5,27 +5,26 @@ const errorHandlerMiddleware = (err, req, res, next) => {
     statusCode: err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR,
     msg: err.message || 'Etwas lief schief, bitte versuche es später nochmal!'
   }
-  
+
   // wenn ValidationError
   if(err.name === 'ValidationError'){
     customError.statusCode = StatusCodes.BAD_REQUEST;
     customError.msg = Object.values(err.errors)
-    .map( error => {
-      if( error.kind === 'Boolean' ){
-        return `${error.path} muss ${error.kind} sein!`
-      } else if( error.kind === 'required' ){
-        return `${error.path} muss enthalten sein!`
+    .reduce((errObj, err) => {
+      if( err.kind === 'Boolean'){
+        errObj[err.path] = `${err.path} muss ${err.kind} sein!`;
+        return errObj;
+      } else if ( err.kind === 'required'){
+        errObj[err.path] = `${err.path} muss enthalten sein!`;
+        return errObj;
       }
-
-      // Vielleicht kommen hier noch weitere hin
-    })
-    .join(' ');
+    }, {});
   }
 
   // wenn MongoServerError && code 11000
   if((err.name === 'MongoServerError' || err.name === 'MongoError' ) && err.code === 11000) {
     customError.statusCode = StatusCodes.CONFLICT;
-    customError.msg = `Nutzer ist bereits vorhanden!`;
+    customError.msg = `Nutzer ist bereits vorhanden!`;    
   }
 
   // wenn CastError
