@@ -159,7 +159,7 @@ userSchema.statics.login = async function(email, password){
   if(!auth) throw new UnauthorizedError('Falsche E-Mail Adresse oder falsches Passwort');
 
   const accessToken = user.createAndGetAccessToken();
-  const refreshToken = user.createGetAndStoreRefreshToken(email);
+  const refreshToken = await user.createGetAndStoreRefreshToken(email);
   
   const u = await this.findOne({ email }).select('-password -__v -refreshToken')
 
