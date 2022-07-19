@@ -12,16 +12,9 @@ const createSearchQuery = (query) => {
       return obj;
     }
 
-    if(key === 'month'){
+    if(key === 'month' || key === 'year'){
       const queryMonthRegExp = new RegExp(`.${query[key]}`);
       obj['eventDate'] = {$in: [queryMonthRegExp]}
-      return obj;
-    }
-
-    if(key === 'year'){
-      const queryYearRegExp = new RegExp(`.${query[key]}`);
-      // console.log(queryYearRegExp);
-      obj['eventDate'] = {$in: [queryYearRegExp]}
       return obj;
     }
     

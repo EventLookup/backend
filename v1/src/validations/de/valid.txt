@@ -1,2 +1,0 @@
-TODO[] Validation für User schreiben
-TODO[] Validation für Event schreiben
